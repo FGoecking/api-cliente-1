@@ -5,6 +5,7 @@ import br.com.arieltintel.cliente.dto.ClienteResponseDTO;
 import br.com.arieltintel.cliente.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,5 +49,10 @@ public class ClienteController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizarCliente(@PathVariable String email, @Validated @RequestBody ClienteRequestDTO clienteRequestDTO) throws Exception {
         clienteService.atualizarCliente(clienteRequestDTO, email);
+    }
+
+    @GetMapping("/welcome")
+    public ResponseEntity<String> welcome(){
+        return new ResponseEntity<>("Welcome",HttpStatus.OK);
     }
 }
